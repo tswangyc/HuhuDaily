@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_comment_image"
+        android:icon="@drawable/ic_comment_white_24dp"
+        android:title="@string/comment"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_comment_text"
+        android:title="@string/comment"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_comment_vote_image"
+        android:icon="@drawable/ic_sentiment_satisfied_white_24dp"
+        android:title="@string/comment_vote"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_comment_vote_text"
+        android:title="@string/comment_vote"
+        app:showAsAction="always"/>
+</menu>
