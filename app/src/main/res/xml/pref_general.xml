@@ -43,6 +43,10 @@
 
         <Preference
             android:defaultValue="Default value"
+            android:key="preference_cache"
+            android:title="清理缓存"/>
+        <Preference
+            android:defaultValue="Default value"
             android:key="preference_update"
             android:summary="2.3.0"
             android:title="检查更新"/>
