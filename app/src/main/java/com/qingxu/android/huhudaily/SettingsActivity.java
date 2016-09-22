@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.qingxu.android.huhudaily.model.UpdateBean;
+import com.qingxu.android.huhudaily.util.DataCleanManager;
 import com.qingxu.android.huhudaily.util.FetchUpdateBeanTask;
 
 import java.util.List;
@@ -193,6 +194,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static class GeneralPreferenceFragment extends PreferenceFragment {
         private String appVersionName;
         private int appVersionCode;
+        private String totalCacheSize;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -217,9 +219,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-            findPreference("preference_update").setSummary("版本：" + sp.getString("preference_update", "Default value"));
+            Preference preference_update = findPreference("preference_update");
+            preference_update.setSummary("版本：" + sp.getString("preference_update", "Default value"));
 
-            findPreference("preference_update").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            preference_update.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     try {
@@ -232,6 +235,29 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                                     "最新版本为：" + updateBean.getLatest(), Toast.LENGTH_SHORT).show();
                         }
                     } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    return false;
+                }
+            });
+            /**
+             * 清理缓存
+             */
+            Preference preference_cache = findPreference("preference_cache");
+            try {
+                totalCacheSize = DataCleanManager.getTotalCacheSize(getActivity());
+                preference_cache.setSummary(totalCacheSize);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            preference_cache.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    DataCleanManager.clearAllCache(getActivity());
+                    try {
+                        totalCacheSize = DataCleanManager.getTotalCacheSize(getActivity());
+                        preference.setSummary(totalCacheSize);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     return false;
