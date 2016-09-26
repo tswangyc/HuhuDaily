@@ -21,9 +21,7 @@ public class NetworkStateReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
-//        throw new UnsupportedOperationException("Not yet implemented");
+
         String action = intent.getAction();
         if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
             Log.d(TAG, "网络状态已经改变");

@@ -9,7 +9,7 @@ public class DetailBean {
 
 
     /**
-     * body : <div class="main-wrap content-wrap">
+     * body : <div class="activity_main-wrap content-wrap">
      <div class="headline">
 
      <div class="img-place-holder"></div>

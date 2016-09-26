@@ -118,7 +118,7 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail, menu);
+        getMenuInflater().inflate(R.menu.activity_detail, menu);
         MenuItem commentItem = menu.findItem(R.id.action_comment_text);
         commentItem.setTitle(mStoryExtraBean.getComments() + "");
 
