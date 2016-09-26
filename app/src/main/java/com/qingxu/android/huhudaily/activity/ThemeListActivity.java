@@ -76,11 +76,14 @@ public class ThemeListActivity extends BaseActivity {
         Log.d(TAG, "onCreate: " + themeBean + " ,Name: " + themeBean.getName());
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.theme_swipe_refresh_layout);
+        assert mSwipeRefreshLayout != null;
+        mSwipeRefreshLayout.setEnabled(false);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 mSwipeRefreshLayout.setRefreshing(true);
                 //TODU
+
             }
         });
         /**
