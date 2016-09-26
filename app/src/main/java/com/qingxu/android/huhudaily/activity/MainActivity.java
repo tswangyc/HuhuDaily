@@ -1,4 +1,4 @@
-package com.qingxu.android.huhudaily;
+package com.qingxu.android.huhudaily.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.qingxu.android.huhudaily.R;
 import com.qingxu.android.huhudaily.adapter.BannerAdapter;
 import com.qingxu.android.huhudaily.adapter.DailyAdapter;
 import com.qingxu.android.huhudaily.model.BeforeBean;
@@ -44,7 +44,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = "MainActivity";
@@ -93,9 +93,8 @@ public class MainActivity extends AppCompatActivity
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void doBusiness() {
+        setContentView(getLayoutRes());
         //夜间模式设置http://www.open-open.com/lib/view/open1456843724062.html
         //OptionMenu中切换夜间模式
         isNightMode = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("isNightMode", false);
@@ -105,6 +104,9 @@ public class MainActivity extends AppCompatActivity
             themeListBean = new FetchThemeListBeanTask().execute().get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
+        }
+        if (mLatestBean == null) {
+            return;
         }
         mTopStoriesBeans = mLatestBean.getTop_stories();
         othersBeans = themeListBean.getOthers();
@@ -150,7 +152,6 @@ public class MainActivity extends AppCompatActivity
             public void onRefresh() {
                 mSwipeRefreshLayout.setRefreshing(true);
                 reLoadLatestNews();
-
             }
         });
         bannerView = LayoutInflater.from(this).inflate(R.layout.banner_layout, null);
@@ -253,6 +254,17 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
 
     }
 
@@ -344,8 +356,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        assert drawer != null;
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+
+        if (drawer != null && drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
@@ -368,7 +380,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        mDailyAdapter.notifyDataSetChanged();
+//        mDailyAdapter.notifyDataSetChanged();
     }
 
     @Override

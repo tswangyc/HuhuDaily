@@ -1,4 +1,4 @@
-package com.qingxu.android.huhudaily;
+package com.qingxu.android.huhudaily.activity;
 
 
 import android.annotation.TargetApi;
@@ -25,6 +25,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.qingxu.android.huhudaily.R;
 import com.qingxu.android.huhudaily.model.UpdateBean;
 import com.qingxu.android.huhudaily.util.DataCleanManager;
 import com.qingxu.android.huhudaily.util.FetchUpdateBeanTask;
@@ -206,9 +207,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-//            bindPreferenceSummaryToValue(findPreference("example_text"));
-//            bindPreferenceSummaryToValue(findPreference("example_list"));
             bindPreferenceSummaryToValue(findPreference("preference_update"));
+
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
             PackageManager pm = getActivity().getPackageManager();
             try {

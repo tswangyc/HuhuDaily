@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.qingxu.android.huhudaily.DetailActivity;
+import com.qingxu.android.huhudaily.activity.DetailActivity;
 import com.qingxu.android.huhudaily.R;
 import com.qingxu.android.huhudaily.model.StoriesBean;
 import com.qingxu.android.huhudaily.view.DailyBodyHolder;

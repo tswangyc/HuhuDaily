@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qingxu.android.huhudaily.R;
-import com.qingxu.android.huhudaily.DetailActivity;
+import com.qingxu.android.huhudaily.activity.DetailActivity;
 import com.qingxu.android.huhudaily.model.TopStoriesBean;
 import com.squareup.picasso.Picasso;
 

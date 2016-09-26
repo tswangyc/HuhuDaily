@@ -3,6 +3,7 @@
           package="com.qingxu.android.huhudaily">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -11,14 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,40 +27,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailActivity"
+            android:name=".activity.DetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.qingxu.android.huhudaily.MainActivity"/>
+                android:value="com.qingxu.android.huhudaily.activity.MainActivity"/>
         </activity>
         <activity
-            android:name=".ThemeListActivity"
+            android:name=".activity.ThemeListActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.qingxu.android.huhudaily.MainActivity"/>
+                android:value="com.qingxu.android.huhudaily.activity.MainActivity"/>
         </activity>
         <activity
-            android:name=".ThemeDetailActivity"
+            android:name=".activity.ThemeDetailActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".ThemeListActivity"
+            android:parentActivityName=".activity.ThemeListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.qingxu.android.huhudaily.ThemeListActivity"/>
+                android:value="com.qingxu.android.huhudaily.activity.ThemeListActivity"/>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activity.SettingsActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.qingxu.android.huhudaily.MainActivity"/>
+                android:value="com.qingxu.android.huhudaily.activity.MainActivity"/>
         </activity>
+
+
+        <receiver
+            android:name=".receiver.NetworkStateReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
+
     </application>
 
 </manifest>

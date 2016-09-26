@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.qingxu.android.huhudaily.R;
-import com.qingxu.android.huhudaily.ThemeDetailActivity;
+import com.qingxu.android.huhudaily.activity.ThemeDetailActivity;
 import com.qingxu.android.huhudaily.model.StoriesBean;
 import com.qingxu.android.huhudaily.view.DailyBodyHolder;
 import com.qingxu.android.huhudaily.view.ThemeBannerHolder;

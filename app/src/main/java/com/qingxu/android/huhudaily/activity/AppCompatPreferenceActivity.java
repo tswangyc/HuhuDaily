@@ -1,4 +1,4 @@
-package com.qingxu.android.huhudaily;
+package com.qingxu.android.huhudaily.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

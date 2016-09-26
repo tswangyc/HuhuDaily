@@ -1,4 +1,4 @@
-package com.qingxu.android.huhudaily;
+package com.qingxu.android.huhudaily.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +21,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qingxu.android.huhudaily.R;
 import com.qingxu.android.huhudaily.adapter.ThemeAdapter;
 import com.qingxu.android.huhudaily.model.ThemeBean;
 import com.qingxu.android.huhudaily.util.FetchThemeBeanTask;
@@ -32,10 +32,10 @@ import java.util.concurrent.ExecutionException;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
-public class ThemeListActivity extends AppCompatActivity {
+public class ThemeListActivity extends BaseActivity {
 
     public static final String TAG = "ThemeListActivity";
-    public static final String EXTRA_ID = "com.qingxu.android.huhudaily.ThemeListActivity.extra_id";
+    public static final String EXTRA_ID = "com.qingxu.android.huhudaily.activity.ThemeListActivity.extra_id";
     private ThemeBean themeBean;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
@@ -44,7 +44,6 @@ public class ThemeListActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context, int id) {
         Intent intent = new Intent(context, ThemeListActivity.class);
-//        intent.putExtra(EXTRA_ID, id);
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
                 .putInt(EXTRA_ID, id)
@@ -53,14 +52,12 @@ public class ThemeListActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_theme_list);
+    protected void doBusiness() {
+        setContentView(getLayoutRes());
 
         /**
          * 获取themeBean
          */
-//        int extra_id = getIntent().getIntExtra(EXTRA_ID, -1);
         int extra_id = PreferenceManager.getDefaultSharedPreferences(this).getInt(EXTRA_ID, -1);
         try {
             themeBean = new FetchThemeBeanTask().execute(extra_id).get();
@@ -136,6 +133,17 @@ public class ThemeListActivity extends AppCompatActivity {
         mThemeAdapter.setBanner(banner, 0);
         mThemeAdapter.setHeaderView(header);
         mThemeAdapter.addDatas(themeBean.getStories());
+    }
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.activity_theme_list;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 }
 
