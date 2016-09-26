@@ -20,7 +20,9 @@ android {
         }
     }
     sourceSets {
-        main { assets.srcDirs = ['src/activity_main/assets', 'src/activity_main/assets/'] }
+        main {
+            assets.srcDirs = ['src/activity_main/assets', 'src/activity_main/assets/', 'src/main/assets', 'src/main/assets/']
+        }
     }
 }
 

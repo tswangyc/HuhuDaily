@@ -15,6 +15,9 @@ public class NetworkStateReceiver extends BroadcastReceiver {
     public static final String TAG = "NetworkStateReceiver";
     private Handler mHandler;
 
+    public NetworkStateReceiver() {
+    }
+
     public NetworkStateReceiver(Handler handler) {
         mHandler = handler;
     }
